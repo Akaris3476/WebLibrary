@@ -1,0 +1,50 @@
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+}
+
+.book-icon {
+    width:48px;
+    margin-right: 10px ;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 1000px;
+    gap: 40px 30px;
+
+    margin: 0 auto;
+
+}
+
+.book-grid h3,p {
+    margin: 0px;
+}
+
+.book-item {
+    border-style: solid;
+    border-radius: 12px;
+
+    padding: 30px 10px;
+    padding-bottom: 10px;
+
+
+    font-size: 14px;
+
+    box-shadow: 0 4px 10px rgba(90, 62, 133, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid var(--border-color);
+}
+
+.book-item button {
+    margin-top: 20px;
+}
+
+.book-item:hover {
+    transform: scale(1.015) translateY(-2px);
+    box-shadow: 0 8px 18px rgba(90, 62, 133, 0.2);
+    border-color: #ce910dc5;
+}
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebLibrary</title>
+    <link rel="stylesheet" href="/general.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="stylesheet" href="/read.css">
+</head>
+
+<body>
+
+<header>
+    <div onclick="window.location.href='/'">
+        <img src="/book.ico" class="book-icon">WebLibrary
+    </div>
+    
+    <hr style="margin-top: 0px;">
+</header>
+
+
+<main>
+
+    <!-- handle typing wrong id in url -->
+    <% if(book.error) {%>
+        
+        <%= book.error %>
+        <br>
+        <button onclick="window.location.href='/'">Return to home</button>
+
+    <% } else { %>
+
+
+        <%= book?.content %>
+
+
+        <!-- not working -->
+        <div style="display: flex; justify-content: center;">
+            <button> < </button>
+            <button> > </button> 
+        </div>
+
+    <% } %>
+    
+</main>
+
+</body>
+
+</html>

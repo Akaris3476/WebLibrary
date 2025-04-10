@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebLibrary</title>
+    <link rel="stylesheet" href="/general.css">
+    <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+
+    <h1 style="display: flex; justify-content: center; ">
+        <img src="book.ico" class="book-icon">
+        Web Library
+    </h1>
+    
+
+    <hr style="margin-bottom: 20px; ">
+
+
+    <div class="book-grid">
+        <% books.forEach(book => { %>
+
+            <div class="book-item">
+
+                <h3 style="margin-bottom: 5px;">
+                    <%= book.title  %>
+                </h3>
+
+                <p>
+                    by <%= book.author %> 
+                </p>
+
+                <br>
+
+                <p>
+                    <!-- add later mb -->
+                    *Description* <%= book.description %>  
+                </p>
+
+               <button onclick="window.location.href=`/read/<%=book.book_id%>`">Read</button>
+
+
+            </div>
+
+
+        <% }); %>
+    </div>
+
+
+
+
+</body>
+</html>

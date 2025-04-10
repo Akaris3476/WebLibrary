@@ -1,0 +1,29 @@
+:root {
+    --dark-bg-color: #a18a5f;
+    --bg-color: #e7e2d5;
+    --border-color: #442c00;
+}
+
+.book-icon {
+    width:48px;
+    margin-right: 10px ;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 30px;
+    background-color: var(--bg-color);
+}
+
+hr {
+    color: var(--border-color);
+}
+
+button {
+    background-color: var(--bg-color);
+    border-color: var(--border-color);
+    border-radius: 4px;
+    margin: 2.5px;
+    
+    cursor: pointer;
+}
