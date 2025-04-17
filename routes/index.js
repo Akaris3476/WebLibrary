@@ -7,7 +7,7 @@ import db from '../models/db.js';
 
 router.get('/',  async (request, response) => {
 
-    let query =  await db.query("SElECT * from books");
+    let query =  await db.query("SELECT * from books");
     response.render('index.ejs', { books: query.rows })
     
 });
