@@ -10,6 +10,7 @@ router.get('/',  async (request, response) => {
 
 });
 
+
 router.get('/:id',  async (request, response) => {
 
     const id = parseInt(request.params.id); //if not number -> id == NaN
@@ -33,7 +34,6 @@ router.get('/:id',  async (request, response) => {
         response.status(400).render('read.ejs', { error: error.message});
 
     }
-
 
 });
 

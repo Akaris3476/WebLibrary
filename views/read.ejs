@@ -12,12 +12,26 @@
 <body>
 
 <header>
-    <div onclick="window.location.href='/'">
+
+    
+    <div class="header-title" onclick="window.location.href='/'">
         <img src="/book.ico" class="book-icon">WebLibrary
     </div>
-    
-    <hr style="margin-top: 0px;">
+
+    <% if(typeof error === 'undefined') {%>
+
+        <label id="chapter">
+            Chapter:
+            <select  class="btn chapter-select">
+            </select>
+        </label>
+        
+
+    <% } %>
+
 </header>
+
+<hr style="margin-top: 0px;">
 
 
 <main>
@@ -27,7 +41,7 @@
         
         <%= error %>
         <br>
-        <button onclick="window.location.href='/'">Return to home</button>
+        <button class="btn" onclick="window.location.href='/'">Return to home</button>
 
     <% } else { %>
 
@@ -37,8 +51,9 @@
 
         <!-- not working -->
         <div style="display: flex; justify-content: center;">
-            <button> < </button>
-            <button> > </button> 
+            <button class="btn"> < </button>
+            <select class="btn"></select>
+            <button class="btn"> > </button> 
         </div>
 
     <% } %>

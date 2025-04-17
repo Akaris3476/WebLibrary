@@ -1,1 +1,15 @@
-/*just in case*/
+#chapter {
+    position: absolute;
+    
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+header {
+    display: flex;
+    align-items: flex-end;
+}
+
+.chapter-select {
+    margin-bottom: 0px;
+}

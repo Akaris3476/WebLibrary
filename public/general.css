@@ -19,7 +19,7 @@ hr {
     color: var(--border-color);
 }
 
-button {
+.btn {
     background-color: var(--bg-color);
     border-color: var(--border-color);
     border-radius: 4px;
