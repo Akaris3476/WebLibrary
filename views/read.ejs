@@ -23,16 +23,16 @@
 <main>
 
     <!-- handle typing wrong id in url -->
-    <% if(book.error) {%>
+    <% if(typeof error !== 'undefined') {%>
         
-        <%= book.error %>
+        <%= error %>
         <br>
         <button onclick="window.location.href='/'">Return to home</button>
 
     <% } else { %>
 
 
-        <%= book?.content %>
+        <%= content %>
 
 
         <!-- not working -->
