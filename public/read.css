@@ -11,6 +11,6 @@ header {
     align-items: flex-end;
 }
 
-.chapter-select {
+header .chapter-select {
     margin-bottom: 0px;
 }

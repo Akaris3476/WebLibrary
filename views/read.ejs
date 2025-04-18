@@ -23,9 +23,20 @@
     <label id="chapter">
         Chapter:
         <select  class="btn chapter-select">
+            <% for (let chap_id of chapters_arr) {%>
+                
+                <% if (chap_id === current_chap) { %>
+                    <option value="<%=chap_id%>" selected><%=chap_id%></option>
+                <% } else { %>
+                    <option value="<%=chap_id%>"><%=chap_id%></option>
+                <% } %>
+
+            <% } %>
+
+
         </select>
     </label>
-        
+
 
 
 </header>
@@ -41,13 +52,34 @@
     <%= content %>
 
 
-        <!-- not working -->
     <div style="display: flex; justify-content: center;">
-        <button class="btn"> < </button>
-        <select class="btn"></select>
-        <button class="btn"> > </button> 
+        <button class="btn"> < </button>   <!-- not working -->
+        <select class="btn chapter-select">
+            <% for (let chap_id of chapters_arr) {%>
+                
+                <% if (chap_id === current_chap) { %>
+                    <option value="<%=chap_id%>" selected><%=chap_id%></option>
+                <% } else { %>
+                    <option value="<%=chap_id%>"><%=chap_id%></option>
+                <% } %>
+
+            <% } %>
+        </select>
+        <button class="btn"> > </button>  <!-- not working -->
     </div>
 
+
+
+    <script> //add event listener to chapter select elements
+        const select_coll = document.getElementsByClassName('chapter-select');
+        
+        for (let select_elem of select_coll){
+            select_elem.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        }
+
+      </script>
     
 </main>
 
