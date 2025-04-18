@@ -1,37 +1,52 @@
 import express from 'express';
-const router = express.Router()
+const router = express.Router();
 
 import db from '../../models/db.js';
 
 
-router.get('/',  async (request, response) => {
+router.get('/', async (request, response) => {
 
     response.redirect('/')
 
 });
 
+router.get('/:bookId', async (request, response) => {
 
-router.get('/:id',  async (request, response) => {
+    const { bookId } = request.params;
 
-    const id = parseInt(request.params.id); //if not number -> id == NaN
+    //finding first available chap
+    const query = await db.query('SELECT chapter_id FROM book_content WHERE book_id = $1 ORDER BY chapter_id ASC', [bookId]);
 
     try {
 
-        if (!Number.isInteger(id)) { //id must not be NaN
-            throw new Error('Invalid path. Must be a number');
-        }
+        const chapterId = query.rows[0].chapter_id;
+        response.redirect(`/read/${bookId}/${chapterId}`);
 
-        let query =  await db.query(`SELECT * FROM book_content WHERE book_id = $1`, [id]);
+    } catch (error) {
+        response.status(404).render('error/404.ejs', { error: 'No book found. Book with this ID doesn\'t exist'});
+    }
+    
+
+});
+
+router.get('/:bookId/:chapterId', async (request, response, next) => {
+
+    const { bookId, chapterId } = request.params; //if not number -> id == NaN
+    console.log(bookId, chapterId)
+
+    try {
+
+        let query = await db.query(`SELECT * FROM book_content WHERE book_id = $1 AND chapter_id = $2`, [bookId, chapterId]);
 
         if(!query.rows[0]) {
-            throw new Error('No book found. Book with this ID doesn\'t exist');
+            throw new Error('No book found. Book or chapter with this ID doesn\'t exist');
         }
 
-        response.render('read.ejs', { content: query.rows[0].content});
+        response.render('read.ejs', { content: query.rows[0].content });
 
     } catch (error) {
 
-        response.status(400).render('read.ejs', { error: error.message});
+        response.status(404).render('error/404.ejs', { error: error.message });
 
     }
 
