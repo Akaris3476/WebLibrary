@@ -12,36 +12,74 @@
 <body>
 
 <header>
-    <div onclick="window.location.href='/'">
+
+    
+    <div class="header-title" onclick="window.location.href='/'">
         <img src="/book.ico" class="book-icon">WebLibrary
     </div>
-    
-    <hr style="margin-top: 0px;">
+
+
+
+    <label id="chapter">
+        Chapter:
+        <select  class="btn chapter-select">
+            <% for (let chap_id of chapters_arr) {%>
+                
+                <% if (chap_id === current_chap) { %>
+                    <option value="<%=chap_id%>" selected><%=chap_id%></option>
+                <% } else { %>
+                    <option value="<%=chap_id%>"><%=chap_id%></option>
+                <% } %>
+
+            <% } %>
+
+
+        </select>
+    </label>
+
+
+
 </header>
+
+<hr style="margin-top: 0px;">
 
 
 <main>
 
-    <!-- handle typing wrong id in url -->
-    <% if(typeof error !== 'undefined') {%>
+
+
+
+    <%= content %>
+
+
+    <div style="display: flex; justify-content: center;">
+        <button class="btn"> < </button>   <!-- not working -->
+        <select class="btn chapter-select">
+            <% for (let chap_id of chapters_arr) {%>
+                
+                <% if (chap_id === current_chap) { %>
+                    <option value="<%=chap_id%>" selected><%=chap_id%></option>
+                <% } else { %>
+                    <option value="<%=chap_id%>"><%=chap_id%></option>
+                <% } %>
+
+            <% } %>
+        </select>
+        <button class="btn"> > </button>  <!-- not working -->
+    </div>
+
+
+
+    <script> //add event listener to chapter select elements
+        const select_coll = document.getElementsByClassName('chapter-select');
         
-        <%= error %>
-        <br>
-        <button onclick="window.location.href='/'">Return to home</button>
+        for (let select_elem of select_coll){
+            select_elem.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        }
 
-    <% } else { %>
-
-
-        <%= content %>
-
-
-        <!-- not working -->
-        <div style="display: flex; justify-content: center;">
-            <button> < </button>
-            <button> > </button> 
-        </div>
-
-    <% } %>
+      </script>
     
 </main>
 

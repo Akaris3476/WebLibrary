@@ -1,0 +1,11 @@
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transform: translateX(-10%); 
+}
+
+main span {
+    color: var(--border-color);
+}
+

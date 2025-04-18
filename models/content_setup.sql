@@ -12,8 +12,10 @@ CREATE TABLE books (
 
 CREATE TABLE book_content (
     content_id SERIAL PRIMARY KEY,
-    book_id INT REFERENCES books(book_id),
-    content TEXT NOT NULL
+    book_id INT  NOT NULL REFERENCES books(book_id) ON DELETE CASCADE,
+    chapter_id NOT NULL INT,
+    content TEXT NOT NULL,
+    CONSTRAINT one_chap_per_book UNIQUE (chapter_id, book_id)
 );
 
 /*sample data*/
