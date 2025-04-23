@@ -37,6 +37,11 @@ header {
     padding: 5px;
 }
 
+header {
+    display: flex;
+    align-items: flex-end;
+}
+
 header .header-title {
     display: inline-flex;
     align-items: flex-end;
