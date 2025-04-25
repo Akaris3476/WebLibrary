@@ -10,10 +10,16 @@
 
 <body>
 
-    <h1 style="display: flex; justify-content: center; ">
-        <img src="book.ico" class="book-icon">
-        Web Library
-    </h1>
+    <header>
+        <nav>
+            <a href="/login">Login</a>
+            <a href="/admin" id="admin" style="display: none;">Admin</a>
+        </nav>
+        <h1 >
+            <img src="book.ico" class="book-icon">WebLibrary
+        </h1>
+
+    </header>
     
 
     <hr style="margin-bottom: 20px; ">
@@ -49,7 +55,27 @@
     </div>
 
 
+    <script>
 
+            document.addEventListener('DOMContentLoaded', async ()=>{
+                const token = localStorage.getItem('token');
+
+                let res = await fetch('/admin/token-check', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+
+                res = await res.json()
+
+                if(res.admin_right){
+                    document.getElementById('admin').style.display = 'block';
+                };
+                
+            });
+
+    </script>
 
 </body>
 </html>

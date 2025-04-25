@@ -5,15 +5,15 @@ const router = express.Router()
 
 router.use(express.json());
 
-
-// const users = [
-//     {
-//         id: 1,
-//         username: 'admin',
-//         password: '$2b$10$sht1vVAWUA67DaLi9Eb6K.QP/Py9eZ5FPdzD3BjvqJsRpbv3Z/jQq', // "meow"
-//         admin_right: true
-//     }
-// ];
+//debug
+const users = [
+    {
+        id: 1,
+        username: 'admin',
+        password: '$2b$10$sht1vVAWUA67DaLi9Eb6K.QP/Py9eZ5FPdzD3BjvqJsRpbv3Z/jQq', // "meow"
+        admin_right: true
+    }
+];
 
 
 router.get('/', async (req,res) => {
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: user.id, username: user.username },
+            { id: user.id, username: user.usernames, admin_right: user.admin_right },
             process.env.JWT_Private_Key
         );
     
