@@ -1,3 +1,5 @@
+//currently useless
+
 import pg from 'pg';
 const { Pool } = pg;
 
@@ -5,7 +7,8 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     port: 3476,
-    database: 'Lib_users'
+    database: 'Lib_users',
+    // password: process.env.psql-password;
 })
 
 try {

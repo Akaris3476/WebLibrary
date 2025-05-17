@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-deployment
+  labels:
+    app: library
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: library
+  template:
+    metadata:
+      labels:
+        app: library
+    spec:
+      containers:
+      - name: weblibrary
+        image: akarisaquili/weblibrary:latest
+        ports:
+        - containerPort: 1234
+        envFrom:
+        - secretRef:
+            name: psql-lib-secret
+        - configMapRef:
+            name: psql-lib-configmap
+        - secretRef:
+            name: jwt-secret
+
+        # env:       
+        # - name: psql-lib-host
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: configmap 
+        #       key: psql-lib-host
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: weblibrary-service
+spec:
+  type: NodePort
+  selector:
+    app: library
+  ports:
+    - protocol: TCP
+      port: 1234
+      targetPort: 1234
+      nodePort: 30200

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: psql-lib-configmap
+data:
+  psql_lib_host: psql-lib-service
+  # PGDATA: /var/lib/postgresql/pgdata
+  # POSTGRES_DB: Library

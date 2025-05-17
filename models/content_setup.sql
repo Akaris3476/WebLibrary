@@ -23,4 +23,5 @@ INSERT INTO books(title,author,production_year) VALUES ('Harry Potter', 'JK Rowl
 INSERT INTO books(title,author,production_year) VALUES ('The Witcher', 'Andrzej Sapkowski', '2004'); 
 INSERT INTO books(title,author,production_year) VALUES ('The Lord of the Rings', 'Tolkien', '1999');
 
-INSERT INTO book_content(book_id, content) VALUES (1, 'placeholder blablablablabla');
+INSERT INTO book_content(book_id, chapter_id, content) VALUES (1, 1, 'placeholder blablablablabla');
+INSERT INTO book_content(book_id, chapter_id, content) VALUES (1, 2, 'placeholder2 blablablabla');
