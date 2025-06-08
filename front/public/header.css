@@ -1,0 +1,52 @@
+/*
+use for making WebLibrary header
+necessary to put everything else into <main>
+
+template:
+
+<header>
+    <div class="header-title" onclick="window.location.href='/'">
+        <img src="/static/book.ico" class="book-icon">WebLibrary
+    </div>
+    
+</header>
+
+<hr style="margin-top: 0px;">
+
+<main>
+    <!-- everything else -->
+</main>
+
+*/
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    margin: 8px;
+    padding: 30px;
+}
+
+header {
+    font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+    font-size:x-large;
+    background-color: var(--dark-bg-color);
+
+    padding: 5px;
+}
+
+header {
+    display: flex;
+    align-items: flex-end;
+}
+
+header .header-title {
+    display: inline-flex;
+    align-items: flex-end;
+
+    cursor: pointer;
+
+}
+

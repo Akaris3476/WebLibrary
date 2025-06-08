@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/general.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    
+<header>
+    <div class="header-title" onclick="window.location.href='/'">
+        <img src="/static/book.ico" class="book-icon">WebLibrary
+    </div>
+    
+</header>
+
+<hr style="margin-top: 0px;">
+
+<main>
+    <form id="loginForm">
+        <label>Login</label>
+        <input type="text" id="login" placeholder="user">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="1234">
+        <button class="btn" type="submit">login</button>
+      </form>
+
+      <p id="error-msg"></p>
+
+      <script>
+
+
+        document.getElementById("loginForm").addEventListener('submit', async (e)=>{
+            e.preventDefault(); 
+            const login = document.getElementById("login").value;
+            const password = document.getElementById("password").value;
+            
+            const res = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: login, password: password })
+            }); 
+
+            const answer = await res.json();
+            document.getElementById("error-msg").innerText = answer.message;
+            localStorage.setItem('token', answer.token)
+        })
+      </script>
+</main>
+
+</body>
+</html>
