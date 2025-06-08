@@ -2,5 +2,5 @@
 .gitignore
 node_modules
 *.yaml
-.env
+back/.env
 psql

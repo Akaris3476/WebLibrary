@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebLibrary</title>
+    <link rel="stylesheet" href="/static/general.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/read.css">
+</head>
+
+<body>
+
+<header>
+
+    
+    <div class="header-title" onclick="window.location.href='/'">
+        <img src="/static/book.ico" class="book-icon">WebLibrary
+    </div>
+
+
+
+    <label id="chapter">
+        Chapter:
+        <select  class="btn chapter-select">
+            <% for (let chap_id of chapters_arr) {%>
+                
+                <% if (chap_id === current_chap) { %>
+                    <option value="<%=chap_id%>" selected><%=chap_id%></option>
+                <% } else { %>
+                    <option value="<%=chap_id%>"><%=chap_id%></option>
+                <% } %>
+
+            <% } %>
+
+
+        </select>
+    </label>
+
+
+
+</header>
+
+<hr style="margin-top: 0px;">
+
+
+<main>
+
+
+
+
+    <%= content %>
+
+
+    <div style="display: flex; justify-content: center;">
+
+        <% let current_chap_index = chapters_arr.indexOf(current_chap);
+
+        if (chapters_arr[current_chap_index - 1]) {%>
+
+            <button class="btn" onclick="window.location.href = <%=current_chap-1%> "> < </button>
+
+        <%}%>
+
+
+        <select class="btn chapter-select">
+            <% for (let chap_id of chapters_arr) {%>
+                
+                <% if (chap_id === current_chap) { %>
+                    <option value="<%=chap_id%>" selected><%=chap_id%></option>
+                <% } else { %>
+                    <option value="<%=chap_id%>"><%=chap_id%></option>
+                <% } %>
+
+            <% } %>
+        </select>
+
+
+        <%if (chapters_arr[current_chap_index + 1]) {%>
+
+            <button class="btn" onclick="window.location.href = <%=current_chap+1%> "> > </button>
+
+        <%}%>
+    </div>
+
+
+
+    <script> //add event listener to chapter select elements
+        const select_coll = document.getElementsByClassName('chapter-select');
+        
+        for (let select_elem of select_coll){
+            select_elem.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        }
+
+    </script>
+    
+</main>
+
+</body>
+
+</html>
