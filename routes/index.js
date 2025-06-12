@@ -21,5 +21,6 @@ router.get('/',  async (request, response) => {
     response.render('index.ejs', { books: query.rows , admin_right: users[0].admin_right})
     
 });
+
  
 export default router;
