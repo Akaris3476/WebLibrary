@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-gateway
+  labels:
+    app: library-gateway
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: library-gateway
+  template:
+    metadata:
+      labels:
+        app: library-gateway
+    spec:
+      containers:
+      - name: weblibrary-gateway
+        image: akarisaquili/weblibrary-gateway:latest
+        ports:
+        - containerPort: 1111
+        envFrom:
+          - configMapRef:
+              name: routes-configmap
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: weblibrary-service
+spec:
+  type: NodePort
+  selector:
+    app: library-gateway
+  ports:
+    - protocol: TCP
+      port: 1111
+      targetPort: 1111
+      nodePort: 30200

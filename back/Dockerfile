@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 1234
+EXPOSE 4321
 
-CMD [ "node", "./controllers/server.js" ]
+CMD [ "node", "./models/server.js" ]

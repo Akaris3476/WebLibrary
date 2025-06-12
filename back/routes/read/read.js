@@ -3,6 +3,7 @@ const router = express.Router();
 
 import db from '../../models/db_lib.js';
 import axios from "axios";
+import serv_gateway_ip from "../../models/gateway_ip.js";
 
 
 router.get('/', async (request, response) => {
@@ -25,7 +26,7 @@ router.get('/:bookId', async (request, response) => {
 
     } catch (error) {
 
-        await axios.post('http://localhost:1111/render', {
+        await axios.post(`http://${serv_gateway_ip}:1111/render`, {
             target: 'error/404.ejs',
             data: {
                 error: 'No book found. Book with this ID doesn\'t exist'
@@ -66,7 +67,7 @@ router.get('/:bookId/:chapterId', async (request, response) => {
         const chapters_arr = query.rows.map(obj => obj.chapter_id); 
 
 
-        await axios.post('http://localhost:1111/render', {
+        await axios.post(`http://${serv_gateway_ip}:1111/render`, {
             target: 'read.ejs',
             data: {
                 content: content,
@@ -80,7 +81,7 @@ router.get('/:bookId/:chapterId', async (request, response) => {
 
     } catch (error) {
 
-        await axios.post('http://localhost:1111/render', {
+        await axios.post(`http://${serv_gateway_ip}:1111/render`, {
             target: 'error/404.ejs',
             data: {
                 error: error.message

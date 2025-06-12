@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-front
+  labels:
+    app: library-front
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: library-front
+  template:
+    metadata:
+      labels:
+        app: library-front
+    spec:
+      containers:
+      - name: weblibrary-front
+        image: akarisaquili/weblibrary-front:latest
+        ports:
+        - containerPort: 1234
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: weblibrary-front-service
+spec:
+  type: ClusterIP
+  selector:
+    app: library-front
+  ports:
+    - protocol: TCP
+      port: 1234
+      targetPort: 1234
