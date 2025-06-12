@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: routes-configmap
+data:
+  serv_front: weblibrary-front-service
+  serv_back: weblibrary-back-service
+  serv_gateway: weblibrary-service

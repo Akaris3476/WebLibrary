@@ -2,6 +2,8 @@ import express from 'express';
 const router = express.Router()
 import axios from 'axios';
 
+import serv_gateway_ip from "../models/gateway_ip.js";
+
 import db from '../models/db_lib.js';
 
 //debug
@@ -19,7 +21,7 @@ const users = [
 router.get('/',  async (request, response) => {
 
     let query =  await db.query("SELECT * from books;");
-    await axios.post('http://localhost:1111/render', {
+    await axios.post(`http://${serv_gateway_ip}:1111/render`, {
         target: 'index.ejs',
         data: {
             books: query.rows,
@@ -32,7 +34,7 @@ router.get('/',  async (request, response) => {
 
 
     //fetch option
-    // await fetch('http://localhost:1111/render', {
+    // await fetch('http://${serv_gateway_ip}:1111/render', {
     //     method: 'POST',
     //     headers: {
     //         'Content-Type': 'application/json'

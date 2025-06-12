@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import axios from "axios";
 const router = express.Router()
+import serv_gateway_ip from "../../models/gateway_ip.js";
 
 router.use(express.json());
 
@@ -18,7 +19,7 @@ const users = [
 
 
 router.get('/', async (request,response) => {
-    await axios.post('http://localhost:1111/render', {
+    await axios.post(`http://${serv_gateway_ip}:1111/render`, {
         target: 'admin/login.ejs'
     })
         .then(res => {
